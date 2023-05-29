@@ -7,14 +7,13 @@ RUN apt-get update && \
 
 WORKDIR /app
 COPY cypress.config.ts next-env.d.ts package.json tsconfig.json yarn.lock ./
-COPY pages pages
-COPY public public
-COPY styles styles
-COPY cypress cypress
 RUN yarn
 RUN yarn cypress install
 
-COPY ./etc/docker/cypress/entrypoint.sh ./
-RUN chmod u+x entrypoint.sh
+COPY ./etc/docker/cypress/entrypoint-e2e.sh ./
+RUN chmod u+x entrypoint-e2e.sh
 
-ENTRYPOINT [ "/app/entrypoint.sh" ]
+COPY ./etc/docker/cypress/entrypoint-components.sh ./
+RUN chmod u+x entrypoint-components.sh
+
+ENTRYPOINT [ "/app/entrypoint-e2e.sh" ]
