@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  # The Cypress E2E testing service
+  cypress:
+    build:
+      context: .
+      dockerfile: etc/docker/cypress/Dockerfile
+    networks:
+      - nextapp-network
+
+networks:
+  nextapp-network:
