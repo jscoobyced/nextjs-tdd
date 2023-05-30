@@ -4,6 +4,45 @@ Test Driven Development (TDD) is a software development approach where tests are
 
 This template project aims at:
 - providing a starting point to create a NextJS application with support for
-  - Unit Test, using [Jest](https://jestjs.io/), a delightful JavaScript Testing Framework with a focus on simplicity. This project enables a watch-mode by default, so the added or modified tests are automatically run.
-  - E2E Test using [Cypress](https://cypress.io). With Cypress, you can easily create tests for your modern web applications, debug them visually, and automatically run them in your continuous integration builds.
-- containerized environment, so all you need is the `docker` and `docker-compose` commands configured on your machine
+  - Components testing
+  - Unit testing
+  - End-To-End testing
+  We are using [Cypress](https://cypress.io). With Cypress, you can easily create tests for your modern web applications, debug them visually, and automatically run them in your continuous integration builds.
+- containerized environment, with deployment to kubernetes.
+
+# Quick start
+
+Clone this repo (or use GitHub UI to create a new one using this repo as template).
+
+## Pre-requisites
+
+All you need is `docker` and `docker-compose` installed.
+
+You will also need to create the `node_modules` folder yourself if you don't want to have permissions issues when docker mount the volume:
+```
+mkdir node_modules
+```
+
+### Optional
+
+This project was created in VS Code. The following extensions are used:
+- Prettier - Code Formatter (`esbenp.prettier-vscode`)
+- Tailwind CSS IntelliSense (`bradlc.vscode-tailwindcss`)
+- YAML (`redhat.vscode-yaml`)
+
+## Let's play
+
+To run all the tests, you can run the command:
+```
+docker-compose up cypress-e2e cypress-components
+```
+This should give an output similar to the following
+![Cypress E2E output](docs/img/cypress-e2e.png)
+
+![Cypress Components output](docs/img/cypress-components.png)
+
+You can then start the application. Run the command:
+```
+docker-compose up dev
+```
+And then open your browser on http://localhost:3000. It supports hot-reload so you can work smoothly.

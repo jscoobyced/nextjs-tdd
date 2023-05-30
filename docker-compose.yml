@@ -34,10 +34,12 @@ services:
     entrypoint: /app/entrypoint-components.sh
   # Run the next JS application in dev mode
   dev:
-    image: node:18-alpine
+    build:
+      context: .
+      dockerfile: etc/docker/node/Dockerfile
     networks:
       - nextapp-network
-    working_dir: /app
+    user: 1000:1000
     ports:
       - 3000:3000
     volumes:
@@ -48,8 +50,7 @@ services:
       - $PWD/next-env.d.ts:/app/next-env.d.ts:ro
       - $PWD/package.json:/app/package.json:ro
       - $PWD/tsconfig.json:/app/tsconfig.json:ro
-      - $PWD/yarn.lock:/app/yarn.lock:ro
-    command: sh -c "yarn && yarn dev"
+      - $PWD/yarn.lock:/app/yarn.lock
 
 networks:
   nextapp-network:
