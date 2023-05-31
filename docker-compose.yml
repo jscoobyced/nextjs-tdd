@@ -51,6 +51,14 @@ services:
       - $PWD/package.json:/app/package.json:ro
       - $PWD/tsconfig.json:/app/tsconfig.json:ro
       - $PWD/yarn.lock:/app/yarn.lock
+  # One time setup
+  setup:
+    image: node:18-alpine
+    user: 1000:1000
+    working_dir: /app
+    volumes:
+      - $PWD:/app
+    command: sh -c "mkdir node_modules && yarn"
 
 networks:
   nextapp-network:

@@ -16,11 +16,9 @@ Clone this repo (or use GitHub UI to create a new one using this repo as templat
 
 ## Pre-requisites
 
-All you need is `docker` and `docker-compose` installed.
-
-You will also need to create the `node_modules` folder yourself if you don't want to have permissions issues when docker mount the volume:
+All you need is `docker` and `docker-compose` installed. Then run the command in the root directoy of the project.
 ```
-mkdir node_modules
+docker-compose up setup
 ```
 
 ### Optional
