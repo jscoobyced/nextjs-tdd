@@ -11,9 +11,12 @@ services:
     environment:
       - CYPRESS_VIDEO=false
       - CYPRESS_SCREENSHOT_ON_RUN_FAILURE=false
+      - TEST_TYPE=e2e
+      - DISPLAY
     volumes:
-      - $PWD/cypress:/app/cypress:ro
-      - $PWD/pages:/app/pages:ro
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - $PWD/cypress:/app/cypress
+      - $PWD/app:/app/app:ro
       - $PWD/public:/app/public:ro
       - $PWD/styles:/app/styles:ro
   # The Cypress components testing service
@@ -26,12 +29,12 @@ services:
     environment:
       - CYPRESS_VIDEO=false
       - CYPRESS_SCREENSHOT_ON_RUN_FAILURE=false
+      - TEST_TYPE=component:headless
     volumes:
       - $PWD/cypress:/app/cypress:ro
-      - $PWD/pages:/app/pages:ro
+      - $PWD/app:/app/app:ro
       - $PWD/public:/app/public:ro
       - $PWD/styles:/app/styles:ro
-    entrypoint: /app/entrypoint-components.sh
   # Run the next JS application in dev mode
   dev:
     build:
@@ -40,25 +43,28 @@ services:
     networks:
       - nextapp-network
     user: 1000:1000
+    working_dir: /app
     ports:
       - 3000:3000
     volumes:
       - $PWD/node_modules:/app/node_modules
-      - $PWD/pages:/app/pages:ro
+      - $PWD/.next:/app/.next
+      - $PWD/app:/app/app:ro
       - $PWD/public:/app/public:ro
       - $PWD/styles:/app/styles:ro
-      - $PWD/next-env.d.ts:/app/next-env.d.ts:ro
-      - $PWD/package.json:/app/package.json:ro
-      - $PWD/tsconfig.json:/app/tsconfig.json:ro
+      - $PWD/package.json:/app/package.json
+      - $PWD/tsconfig.json:/app/tsconfig.json
       - $PWD/yarn.lock:/app/yarn.lock
   # One time setup
   setup:
-    image: node:18-alpine
+    build:
+      context: .
+      dockerfile: etc/docker/node/Dockerfile
     user: 1000:1000
     working_dir: /app
     volumes:
       - $PWD:/app
-    command: sh -c "mkdir node_modules && yarn"
+    entrypoint: /home/node/entrypoint-setup.sh
 
 networks:
   nextapp-network:

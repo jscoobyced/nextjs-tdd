@@ -32,6 +32,7 @@ This project was created in VS Code. The following extensions are used:
 
 To run all the tests, you can run the command:
 ```
+xhost +local:*
 docker-compose up cypress-e2e cypress-components
 ```
 This should give an output similar to the following

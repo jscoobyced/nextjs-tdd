@@ -6,14 +6,12 @@ RUN apt-get update && \
     libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb procps
 
 WORKDIR /app
-COPY cypress.config.ts next-env.d.ts package.json tsconfig.json yarn.lock ./
+COPY cypress.config.ts postcss.config.js tailwind.config.js package.json tsconfig.json yarn.lock ./
 RUN yarn
 RUN yarn cypress install
+RUN yarn next telemetry disable
 
-COPY ./etc/docker/cypress/entrypoint-e2e.sh ./
-RUN chmod u+x entrypoint-e2e.sh
+COPY ./etc/docker/cypress/entrypoint.sh ./
+RUN chmod u+x entrypoint.sh
 
-COPY ./etc/docker/cypress/entrypoint-components.sh ./
-RUN chmod u+x entrypoint-components.sh
-
-ENTRYPOINT [ "/app/entrypoint-e2e.sh" ]
+ENTRYPOINT [ "/app/entrypoint.sh" ]

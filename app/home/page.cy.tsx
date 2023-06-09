@@ -1,4 +1,4 @@
-import Home from './home'
+import Home from './page'
 
 describe('<Home />', () => {
   it('should render and display expected content', () => {

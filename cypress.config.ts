@@ -7,6 +7,7 @@ export default defineConfig({
     viewportWidth: 1920,
     video: false,
     screenshotOnRunFailure: false,
+    watchForFileChanges: true,
   },
   component: {
     devServer: {
