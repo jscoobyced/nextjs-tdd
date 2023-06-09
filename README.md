@@ -36,7 +36,15 @@ xhost +local:*
 docker-compose up cypress-e2e cypress-components
 ```
 This should give an output similar to the following
-![Cypress E2E output](docs/img/cypress-e2e.png)
+![Cypress E2E output](docs/img/cypress-e2e-01.png)
+
+Then press the `Continue` button
+![Cypress E2E output](docs/img/cypress-e2e-02.png)
+
+And finally click on the `home.cy.ts` test to run it.
+![Cypress E2E output](docs/img/cypress-e2e-03.png)
+
+The component tests will look like below:
 
 ![Cypress Components output](docs/img/cypress-components.png)
 
