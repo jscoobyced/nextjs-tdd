@@ -1,11 +1,10 @@
-
 import { Metadata } from 'next'
-import '../styles/globals.css'
-import RootLayout from './base_layout'
+import RootLayout from '../base_layout'
 
 export const metadata: Metadata = {
   title: 'Home',
-  description: 'Welcome to your app.',
+  description: 'Welcome to your home.',
 }
+
 
 export default RootLayout
