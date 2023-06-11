@@ -24,6 +24,8 @@ docker-compose up setup
 ### Optional
 
 This project was created in VS Code. The following extensions are used:
+- Docker (`ms-azuretools.vscode-docker`)
+- EditorConfig (`editorconfig.editorconfig`)
 - Prettier - Code Formatter (`esbenp.prettier-vscode`)
 - Tailwind CSS IntelliSense (`bradlc.vscode-tailwindcss`)
 - YAML (`redhat.vscode-yaml`)
@@ -32,10 +34,18 @@ This project was created in VS Code. The following extensions are used:
 
 To run all the tests, you can run the command:
 ```
-xhost +local:*
-docker-compose up cypress-e2e cypress-components
+docker-compose up cypress-components
 ```
 This should give an output similar to the following
+![Cypress Components output](docs/img/cypress-components.png)
+
+
+Next let's run the End to end tests:
+```
+xhost +local:*
+docker-compose up cypress-e2e
+```
+which opens the following window
 ![Cypress E2E output](docs/img/cypress-e2e-01.png)
 
 Then press the `Continue` button
@@ -46,7 +56,6 @@ And finally click on the `home.cy.ts` test to run it.
 
 The component tests will look like below:
 
-![Cypress Components output](docs/img/cypress-components.png)
 
 You can then start the application. Run the command:
 ```
