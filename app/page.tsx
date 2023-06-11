@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -9,8 +8,6 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <>
-      <Head>
-      </Head>
     </>
   )
 }
