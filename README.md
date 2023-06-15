@@ -18,7 +18,7 @@ Clone this repo (or use GitHub UI to create a new one using this repo as templat
 
 All you need is `docker` and `docker-compose` installed. Then run the command in the root directoy of the project.
 ```
-docker-compose up setup
+make setup
 ```
 
 ### Optional
@@ -34,7 +34,7 @@ This project was created in VS Code. The following extensions are used:
 
 To run all the tests, you can run the command:
 ```
-docker-compose up cypress-components
+make test
 ```
 This should give an output similar to the following
 ![Cypress Components output](docs/img/cypress-components.png)
@@ -42,8 +42,7 @@ This should give an output similar to the following
 
 Next let's run the End to end tests:
 ```
-xhost +local:*
-docker-compose up cypress-e2e
+make e2e
 ```
 which opens the following window
 ![Cypress E2E output](docs/img/cypress-e2e-01.png)
@@ -59,6 +58,6 @@ The component tests will look like below:
 
 You can then start the application. Run the command:
 ```
-docker-compose up dev
+make dev
 ```
 And then open your browser on http://localhost:3000. It supports hot-reload so you can work smoothly.
