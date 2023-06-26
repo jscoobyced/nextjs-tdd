@@ -36,8 +36,14 @@ To run all the tests, you can run the command:
 ```
 make test
 ```
-This should give an output similar to the following
-![Cypress Components output](docs/img/cypress-components.png)
+which opens the following window
+![Cypress E2E output](docs/img/cypress-components-01.png)
+
+Then press the `Continue` button
+![Cypress E2E output](docs/img/cypress-components-02.png)
+
+And finally click on the `Menu.cy.tsx` or `page.cy.tsx` test to run it.
+![Cypress E2E output](docs/img/cypress-components-03.png)
 
 
 Next let's run the End to end tests:
