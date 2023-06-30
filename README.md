@@ -36,13 +36,13 @@ To run all the tests, you can run the command:
 ```
 make test
 ```
-which opens the following window
+which opens the following window  
 ![Cypress E2E output](docs/img/cypress-components-01.png)
 
-Then press the `Continue` button
+Then press the `Continue` button  
 ![Cypress E2E output](docs/img/cypress-components-02.png)
 
-And finally click on the `Menu.cy.tsx` or `page.cy.tsx` test to run it.
+And finally click on the `Menu.cy.tsx` or `page.cy.tsx` test to run it.  
 ![Cypress E2E output](docs/img/cypress-components-03.png)
 
 
@@ -50,13 +50,13 @@ Next let's run the End to end tests:
 ```
 make e2e
 ```
-which opens the following window
+which opens the following window  
 ![Cypress E2E output](docs/img/cypress-e2e-01.png)
 
-Then press the `Continue` button
+Then press the `Continue` button  
 ![Cypress E2E output](docs/img/cypress-e2e-02.png)
 
-And finally click on the `home.cy.ts` test to run it.
+And finally click on the `home.cy.ts` test to run it.  
 ![Cypress E2E output](docs/img/cypress-e2e-03.png)
 
 The component tests will look like below:
@@ -67,3 +67,33 @@ You can then start the application. Run the command:
 make dev
 ```
 And then open your browser on http://localhost:3000. It supports hot-reload so you can work smoothly.
+
+## Troubleshooting
+
+If you are not using a Linux machine, you will meet problem with running the E2E and Component tests. This is because of the GUI within the docker container cannot be exported to the DISPLAY in your host machine. At least I haven't added the support yet.
+
+### Running the tests in headless mode
+
+If you see errors when running the `make e2e` or `make test` commands:
+1. Make sure you have run the `make setup` succesfully
+2. Change to headless mode:
+2.1. Edit the `Makefile` and remove the `-d` from the `docker-compose` commands:
+```
+#...
+test:
+  # Comment out the xhost line
+  # xhost +local:*
+  # Replace
+  # docker-compose up -d cypress-components
+  # with (remove -d)
+	docker-compose up cypress-components
+
+e2e:
+  # Comment out the xhost line
+  # xhost +local:*
+  # Replace
+  # docker-compose up -d cypress-e2e
+  # with (remove -d)
+	docker-compose up cypress-e2e
+```
+You should be able to run the tests in console/headless mode
